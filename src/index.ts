@@ -31,7 +31,7 @@ async function main () {
   routerApi(app);
 
   app.get('/', (_req, res) => {
-    res.send('Videobox is aliveeee! (╯°□°）╯');
+    res.send('kyrios is aliveeee! (╯°□°）╯');
   });
 
   app.listen(port, () => {

@@ -48,7 +48,7 @@ async function main() {
     const port = process.env.PORT || 3000; // Fallback port value, change it to your preferred port
     (0, routes_1.default)(app);
     app.get('/', (_req, res) => {
-        res.send('Videobox is aliveeee! (╯°□°）╯');
+        res.send('kyrios is aliveeee! (╯°□°）╯');
     });
     app.listen(port, () => {
         console.log(`Server is running at http://localhost:${port}`);
