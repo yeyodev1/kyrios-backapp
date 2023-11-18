@@ -36,4 +36,4 @@ async function getUser(req: Request, res: Response) {
   }
 }
 
-export { getUsers, updateUser, uploadUserImage, getUser };
+export { getUsers, getUser };
