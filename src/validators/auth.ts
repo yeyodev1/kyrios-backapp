@@ -28,8 +28,6 @@ const authValidatorRegister = [
     .isISO8601()
     .withMessage('Date is required'),
 
-  check('role').optional(),
-
   (req: Request, res: Response, next: NextFunction) => {
     return validateResults(req, res, next);
   }
