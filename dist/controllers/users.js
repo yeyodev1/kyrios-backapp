@@ -8,7 +8,7 @@ const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const index_1 = __importDefault(require("../models/index"));
 async function getUsers(_req, res) {
     try {
-        const users = await index_1.default.users.find({}).populate('videos');
+        const users = await index_1.default.users.find({});
         res.send(users);
     }
     catch (error) {
@@ -19,7 +19,7 @@ exports.getUsers = getUsers;
 async function getUser(req, res) {
     try {
         const id = req.body.id;
-        const user = await index_1.default.users.findById(id).populate('videos');
+        const user = await index_1.default.users.findById(id);
         if (!user) {
             (0, handleErrors_1.default)(res, 'Usuario no existe');
             return;

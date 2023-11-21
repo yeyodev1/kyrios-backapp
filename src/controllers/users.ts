@@ -5,7 +5,7 @@ import models from '../models/index';
 
 async function getUsers(_req: Request, res: Response) {
   try {
-    const users = await models.users.find({}).populate('videos');
+    const users = await models.users.find({});
     res.send(users);
   } catch (error) {
     handleHttpError(res, 'Cannot get users');
@@ -16,7 +16,7 @@ async function getUsers(_req: Request, res: Response) {
 async function getUser(req: Request, res: Response) {
   try {
     const id = req.body.id;
-    const user = await models.users.findById(id).populate('videos');
+    const user = await models.users.findById(id);
 
     if (!user) {
       handleHttpError(res, 'Usuario no existe');
