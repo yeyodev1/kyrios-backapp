@@ -33,7 +33,7 @@ async function createIsoTest(req: Request, res: Response) {
 
 async function getLastUserTest(req: Request, res: Response) {
   try {
-    const userId = req.body.id;
+    const userId = req.params.userId;
 
     if (!userId) {
       return res.status(401).json({message: 'User not authenticated'});

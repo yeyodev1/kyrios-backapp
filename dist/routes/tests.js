@@ -8,5 +8,5 @@ const tests_1 = require("../controllers/tests");
 const handleBearer_1 = require("../middlewares/handleBearer");
 const router = express_1.default.Router();
 router.post('/isotest/create', handleBearer_1.authenticateToken, tests_1.createIsoTest);
-router.post('/isotest/lastTest', handleBearer_1.authenticateToken, tests_1.getLastUserTest);
+router.get('/isotest/lastTest/:userId', handleBearer_1.authenticateToken, tests_1.getLastUserTest);
 exports.default = router;

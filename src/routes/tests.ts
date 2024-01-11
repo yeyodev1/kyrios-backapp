@@ -7,6 +7,6 @@ const router = express.Router()
 
 router.post('/isotest/create', authenticateToken, createIsoTest)
 
-router.post('/isotest/lastTest', authenticateToken, getLastUserTest)
+router.get('/isotest/lastTest/:userId', authenticateToken, getLastUserTest)
 
 export default router
