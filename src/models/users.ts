@@ -20,6 +20,12 @@ const usersSchema: Schema = new mongoose.Schema(
       required: true,
       select: false
     },
+   tests: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'IsoTest'
+    }
+   ]
   },
   {
     timestamps: true,
