@@ -31,4 +31,30 @@ async function createIsoTest(req: Request, res: Response) {
   }
 }
 
-export { createIsoTest }
+async function getLastUserTest(req: Request, res: Response) {
+  try {
+    const userId = req.body.id;
+
+    if (!userId) {
+      return res.status(401).json({message: 'User not authenticated'});
+    }
+    const user = await users.findById(userId).populate('tests').exec();
+    
+    if(!user) {
+      handleHttpError(res, 'User not found', 404);
+      return
+    }
+    
+    const lastTest = user.tests[user.tests.length -1 ];
+
+    if (!lastTest) {
+      return res.status(404).json({message: 'no tests found for this user'})
+    }
+
+    res.status(200).json(lastTest);
+  } catch (error) {
+    handleHttpError(res, 'error retrieving user tests', 500)
+  }
+}
+
+export { createIsoTest, getLastUserTest }

@@ -16,7 +16,7 @@ async function getUsers(_req: Request, res: Response) {
 async function getUser(req: Request, res: Response) {
   try {
     const id = req.body.id;
-    const user = await models.users.findById(id);
+    const user = await models.users.findById(id).populate('tests');
 
     if (!user) {
       handleHttpError(res, 'Usuario no existe');
@@ -28,6 +28,7 @@ async function getUser(req: Request, res: Response) {
       lastname: user?.lastname,
       id: user?._id,
       email: user.email,
+      tests: user.tests
     };
 
     res.send({ data });

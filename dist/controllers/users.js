@@ -19,7 +19,7 @@ exports.getUsers = getUsers;
 async function getUser(req, res) {
     try {
         const id = req.body.id;
-        const user = await index_1.default.users.findById(id);
+        const user = await index_1.default.users.findById(id).populate('tests');
         if (!user) {
             (0, handleErrors_1.default)(res, 'Usuario no existe');
             return;
@@ -29,6 +29,7 @@ async function getUser(req, res) {
             lastname: user === null || user === void 0 ? void 0 : user.lastname,
             id: user === null || user === void 0 ? void 0 : user._id,
             email: user.email,
+            tests: user.tests
         };
         res.send({ data });
     }
