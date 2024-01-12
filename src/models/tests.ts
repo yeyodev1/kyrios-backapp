@@ -8,15 +8,17 @@ const isoTestSchema = new mongoose.Schema({
   },
   company: {
     type: String,
-    required: true
+    required: false
   },
   date: {
     type: Date,
-    required: true
+    required: false,
+    default: new Date()
   },
   createdBy: {
     type: String,
-    required: true
+    required: false,
+    default: 'yeyodev'
   },
   questions: [
     {

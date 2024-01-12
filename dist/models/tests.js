@@ -12,15 +12,17 @@ const isoTestSchema = new mongoose_1.default.Schema({
     },
     company: {
         type: String,
-        required: true
+        required: false
     },
     date: {
         type: Date,
-        required: true
+        required: false,
+        default: new Date()
     },
     createdBy: {
         type: String,
-        required: true
+        required: false,
+        default: 'yeyodev'
     },
     questions: [
         {
