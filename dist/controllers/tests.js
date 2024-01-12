@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLastUserTest = exports.createIsoTest = void 0;
+exports.setUserTestAccessLevel = exports.getLastUserTest = exports.createIsoTest = void 0;
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const tests_1 = __importDefault(require("../models/tests"));
 const users_1 = __importDefault(require("../models/users"));
@@ -51,3 +51,25 @@ async function getLastUserTest(req, res) {
     }
 }
 exports.getLastUserTest = getLastUserTest;
+async function setUserTestAccessLevel(req, res) {
+    try {
+        const userId = req.body.id;
+        const { testAccessLevel } = req.body;
+        if (!userId) {
+            return res.status(401).json({ message: 'user not authenticated' });
+        }
+        if (!['viewTest', 'downloadAndViewTest', 'downloadTemplate'].includes(testAccessLevel)) {
+            return res.status(400).json({ message: 'invalid test access level' });
+        }
+        const user = await users_1.default.findByIdAndUpdate(userId, { testAccessLevel }, { new: true });
+        if (!user) {
+            (0, handleErrors_1.default)(res, 'user not found', 404);
+            return;
+        }
+        res.status(200).json({ message: 'test access level updated', user });
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'error updating test access level', 500);
+    }
+}
+exports.setUserTestAccessLevel = setUserTestAccessLevel;

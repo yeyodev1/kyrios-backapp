@@ -57,4 +57,28 @@ async function getLastUserTest(req: Request, res: Response) {
   }
 }
 
-export { createIsoTest, getLastUserTest }
+async function setUserTestAccessLevel(req: Request, res: Response) {
+  try {
+    const userId = req.body.id;
+    const { testAccessLevel } = req.body;
+    if (!userId) {
+      return res.status(401).json({message: 'user not authenticated'});
+    }
+
+    if (!['viewTest', 'downloadAndViewTest', 'downloadTemplate'].includes(testAccessLevel)) {
+      return res.status(400).json({message: 'invalid test access level'});
+    }
+
+    const user = await users.findByIdAndUpdate(userId, {testAccessLevel}, {new: true});
+    
+    if (!user) {
+      handleHttpError(res, 'user not found', 404);
+      return;
+    }
+    res.status(200).json({message: 'test access level updated', user})
+  } catch (error) {
+    handleHttpError(res, 'error updating test access level', 500)
+  }
+}
+
+export { createIsoTest, getLastUserTest, setUserTestAccessLevel }

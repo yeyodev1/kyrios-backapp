@@ -25,7 +25,12 @@ const usersSchema: Schema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: 'IsoTest'
     }
-   ]
+   ],
+   testAccessLevel: {
+    type: String,
+    enum: ['viewTest', 'downloadAndViewTest', 'downloadTemplate'],
+    default: null
+   }
   },
   {
     timestamps: true,
