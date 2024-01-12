@@ -10,4 +10,5 @@ const router = express_1.default.Router();
 router.post('/isotest/create', handleBearer_1.authenticateToken, tests_1.createIsoTest);
 router.get('/isotest/lastTest/:userId', handleBearer_1.authenticateToken, tests_1.getLastUserTest);
 router.put('/isotest/testAccessLevel', handleBearer_1.authenticateToken, tests_1.setUserTestAccessLevel);
+router.get('/isotest/testAccessLevel/:id', handleBearer_1.authenticateToken, tests_1.getUserTestAccessLevel);
 exports.default = router;

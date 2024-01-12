@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setUserTestAccessLevel = exports.getLastUserTest = exports.createIsoTest = void 0;
+exports.getUserTestAccessLevel = exports.setUserTestAccessLevel = exports.getLastUserTest = exports.createIsoTest = void 0;
 const handleErrors_1 = __importDefault(require("../utils/handleErrors"));
 const tests_1 = __importDefault(require("../models/tests"));
 const users_1 = __importDefault(require("../models/users"));
@@ -73,3 +73,21 @@ async function setUserTestAccessLevel(req, res) {
     }
 }
 exports.setUserTestAccessLevel = setUserTestAccessLevel;
+async function getUserTestAccessLevel(req, res) {
+    try {
+        const userId = req.params.id;
+        if (!userId) {
+            return res.status(400).json({ message: 'user id is required' });
+        }
+        const user = await users_1.default.findById(userId).select('testAccessLevel').exec();
+        if (!user) {
+            (0, handleErrors_1.default)(res, 'user not found', 404);
+            return;
+        }
+        res.status(200).json({ testAccessLevel: user.testAccessLevel || 'not found user election' });
+    }
+    catch (error) {
+        (0, handleErrors_1.default)(res, 'error retreiving test access level', 500);
+    }
+}
+exports.getUserTestAccessLevel = getUserTestAccessLevel;

@@ -81,4 +81,24 @@ async function setUserTestAccessLevel(req: Request, res: Response) {
   }
 }
 
-export { createIsoTest, getLastUserTest, setUserTestAccessLevel }
+async function getUserTestAccessLevel (req: Request, res: Response) {
+  try {
+    const userId = req.params.id;
+
+    if(!userId) {
+      return res.status(400).json({message: 'user id is required'});
+    }
+
+    const user = await users.findById(userId).select('testAccessLevel').exec();
+
+    if (!user) {
+      handleHttpError(res, 'user not found', 404);
+      return;
+    }
+    res.status(200).json({testAccessLevel: user.testAccessLevel || 'not found user election'});
+  } catch (error) {
+    handleHttpError(res, 'error retreiving test access level', 500)
+  }
+}
+
+export { createIsoTest, getLastUserTest, setUserTestAccessLevel, getUserTestAccessLevel }
