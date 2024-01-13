@@ -41,6 +41,10 @@ const isoTestSchema = new mongoose.Schema({
         type: String,
         required: false, 
       },
+      userResponse: {
+        type: String, 
+        required: false
+      }
     }
   ],
 });
