@@ -1,4 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
+
+const responseOptionsValues = ['Sin documentar ni implementar', 'Implementado pero no formalizado ni comunicado', 'Implementado, documentado pero requiere mejorar', 'Implementado listo para auditar', 'No aplica'];
 
 const isoTestSchema = new mongoose.Schema({
   isoType: {
@@ -22,12 +24,25 @@ const isoTestSchema = new mongoose.Schema({
   },
   questions: [
     {
-      clause: String,
-      questionText: String,
-      answerOptions: [String],
-      correctAnswer: String
+      clause: {
+        type: String,
+        required: false,
+      },
+      questionText: {
+        type: String,
+        required: true,
+      },
+      answerOptions: {
+        type: [String],
+        required: true,
+        default: responseOptionsValues,
+      },
+      correctAnswer: {
+        type: String,
+        required: false, 
+      },
     }
-  ]
+  ],
 });
 
 export default mongoose.model('IsoTest', isoTestSchema);

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const responseOptionsValues = ['Sin documentar ni implementar', 'Implementado pero no formalizado ni comunicado', 'Implementado, documentado pero requiere mejorar', 'Implementado listo para auditar', 'No aplica'];
 const isoTestSchema = new mongoose_1.default.Schema({
     isoType: {
         type: String,
@@ -26,11 +27,24 @@ const isoTestSchema = new mongoose_1.default.Schema({
     },
     questions: [
         {
-            clause: String,
-            questionText: String,
-            answerOptions: [String],
-            correctAnswer: String
+            clause: {
+                type: String,
+                required: false,
+            },
+            questionText: {
+                type: String,
+                required: true,
+            },
+            answerOptions: {
+                type: [String],
+                required: true,
+                default: responseOptionsValues,
+            },
+            correctAnswer: {
+                type: String,
+                required: false,
+            },
         }
-    ]
+    ],
 });
 exports.default = mongoose_1.default.model('IsoTest', isoTestSchema);
