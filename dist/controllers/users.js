@@ -29,7 +29,8 @@ async function getUser(req, res) {
             lastname: user === null || user === void 0 ? void 0 : user.lastname,
             id: user === null || user === void 0 ? void 0 : user._id,
             email: user.email,
-            tests: user.tests
+            tests: user.tests,
+            testAccessLevel: user === null || user === void 0 ? void 0 : user.testAccessLevel
         };
         res.send({ data });
     }

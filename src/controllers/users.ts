@@ -28,7 +28,8 @@ async function getUser(req: Request, res: Response) {
       lastname: user?.lastname,
       id: user?._id,
       email: user.email,
-      tests: user.tests
+      tests: user.tests,
+      testAccessLevel: user?.testAccessLevel
     };
 
     res.send({ data });
