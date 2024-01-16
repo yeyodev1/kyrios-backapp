@@ -17,6 +17,14 @@ const isoTestSchema = new mongoose.Schema({
     required: false,
     default: new Date()
   },
+  process: {
+    type: String,
+    required: false,
+  },
+  control: {
+    type: String,
+    required: false,
+  },
   createdBy: {
     type: String,
     required: false,
