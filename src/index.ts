@@ -12,7 +12,7 @@ async function main () {
   dotenv.config();
 
   const whiteList: string[] = [
-    'http://localhost:3000',
+    // 'http://localhost:3000',
     'http://127.0.0.1:3000',
     'https://kyriosweb.netlify.app',
     'https://localhost:3010',
