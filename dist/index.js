@@ -37,7 +37,9 @@ async function main() {
     const whiteList = [
         'http://localhost:3000',
         'http://127.0.0.1:3000',
-        'https://kyriosweb.netlify.app'
+        'https://kyriosweb.netlify.app',
+        'https://localhost:3010',
+        'https://kyrios.com.ec',
         // TODO: add app sandbox domain
     ];
     const app = (0, express_1.default)();
