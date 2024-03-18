@@ -15,8 +15,8 @@ async function main () {
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'https://kyriosweb.netlify.app',
-    'https://localhost:3010/',
-    'https://kyrios.com.ec/',
+    'https://localhost:3010',
+    'https://kyrios.com.ec',
     // TODO: add app sandbox domain
   ];
 
