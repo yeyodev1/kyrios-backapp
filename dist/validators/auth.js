@@ -33,7 +33,7 @@ const authValidatorRegister = [
 exports.authValidatorRegister = authValidatorRegister;
 const authValidatorlogin = [
     (0, express_validator_1.check)('email').exists().notEmpty().isEmail(),
-    (0, express_validator_1.check)('password').exists().notEmpty().isLength({ min: 8 }),
+    (0, express_validator_1.check)('password').exists().notEmpty().isLength({ min: 2 }),
     (req, res, next) => {
         return (0, handleValidator_1.default)(req, res, next);
     }

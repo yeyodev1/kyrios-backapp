@@ -34,7 +34,7 @@ const authValidatorRegister = [
 const authValidatorlogin = [
   check('email').exists().notEmpty().isEmail(),
 
-  check('password').exists().notEmpty().isLength({ min: 8 }),
+  check('password').exists().notEmpty().isLength({ min: 2 }),
 
   (req: Request, res: Response, next: NextFunction) => {
     return validateResults(req, res, next);
