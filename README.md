@@ -18,7 +18,6 @@ Kyrios BackApp es una aplicación backend construida con Node.js, Express y Mong
      ```sh
      git clone git@github.com:yeyodev1/kyrios-backapp.git
      ```
-   - Ya tendrás el proyecto en tu máquina.
 
 2. **Abre el proyecto en tu editor de código:**
    - Dirígete al directorio donde clonaste el proyecto.
